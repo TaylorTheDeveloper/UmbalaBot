@@ -51,13 +51,6 @@ def get_colors(hist, centroids):
 	return colors
 
 #Keys
-IMGUR_CLIENT_ID = '01daaea9535f153'
-IMGUR_CLIENT_SECRET = '7ee8195bc0a759716a3aefd0898312c0d24c3e95'
-T_CONSUMER_KEY = 'AOP8tSfCUVGnPvP5XhuQ0YM4a'#keep the quotes, replace this with your consumer key
-T_CONSUMER_SECRET = 'AnoqbRjZq66qaf3ko5QnbCVFswizY5TRYnBwVqfP3MoMqe5no2'#keep the quotes, replace this with your consumer secret key
-T_ACCESS_KEY = '4870995742-SbLewErytfpuulbm42NCYJUW92ldWarsLwgkZB0'#keep the quotes, replace this with your access token
-T_ACCESS_SECRET = 'QJmMsF5Qf4WjCqi4MNN7tIDhA8mPF555oTImQW19b6ivu'#keep the quotes, replace this with your access token secret
-NUM_CLUSTERS = 3
 
 #Twitter Auth
 auth = tweepy.OAuthHandler(T_CONSUMER_KEY, T_CONSUMER_SECRET)
@@ -89,39 +82,13 @@ for n in names:
    			clusters.fit(img)
    			hist = centroid_histogram(clusters)
    			colors = get_colors(hist,clusters.cluster_centers_)
+   			barimg = plot_colors(hist,clusters.cluster_centers_)
+   			cv2.imwrite("colors.png",barimg)
+   			#Update Status with color info
+   			api.update_status(str(filename) + " " + str(colors))
 
 
  
-# load the image and convert it from BGR to RGB so that
-# we can dispaly it with matplotlib
-image = cv2.imread("image0.gif")
-image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
- 
-# show our image
-# plt.figure()
-# plt.axis("off")
-#plt.imshow(image)
-
-# reshape the image to be a list of pixels
-image = image.reshape((image.shape[0] * image.shape[1], 3))
-
-# cluster the pixel intensities
-clt = KMeans(n_clusters = 3)
-clt.fit(image)
-
-# build a histogram of clusters and then create a figure
-# representing the number of pixels labeled to each color
-hist = centroid_histogram(clt)
-
-bar = plot_colors(hist, clt.cluster_centers_)
-
-colors = get_colors(hist,clt.cluster_centers_)
- 
-# show our color bart
-plt.figure()
-plt.axis("off")
-plt.imshow(bar)
-plt.show()
 
  
 
