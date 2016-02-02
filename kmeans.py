@@ -51,6 +51,7 @@ def get_colors(hist, centroids):
 	return colors
 
 #Keys
+NUM_CLUSTERS = 3
 
 #Twitter Auth
 auth = tweepy.OAuthHandler(T_CONSUMER_KEY, T_CONSUMER_SECRET)
@@ -63,14 +64,14 @@ imgur = pyimgur.Imgur(IMGUR_CLIENT_ID)
 #print image.title # Cat Ying & Yang
 #print image.link# http://imgur.com/S1jmapR.jpg
 #image.download()
-images = imgur.get_gallery(section='hot', sort='viral', window='day', show_viral=True, limit=1)
-#images = imgur.get_subreddit_gallery('CineShots', sort='time', window='top', limit=1)
+#images = imgur.get_gallery(section='hot', sort='viral', window='day', show_viral=True, limit=1)
+images = imgur.get_subreddit_gallery('Pics', sort='time', window='top', limit=1)
 
 names = list()
 for i,im in enumerate(images):
-	name = "image" + str(i)
+	name = im.title#"image" + str(i)
 	names.append(name)
-	#im.download("./","image"+str(i))
+	im.download("./",name)
 
 for n in names:
 	for filename in glob.glob("*"):
@@ -78,6 +79,7 @@ for n in names:
    			img = cv2.imread(filename)
    			img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
    			img = img.reshape((img.shape[0]*img.shape[1],3))
+   			img = cv2.sort(img, cv2.SORT_ASCENDING)
    			clusters = KMeans(n_clusters = NUM_CLUSTERS)
    			clusters.fit(img)
    			hist = centroid_histogram(clusters)
@@ -85,7 +87,7 @@ for n in names:
    			barimg = plot_colors(hist,clusters.cluster_centers_)
    			cv2.imwrite("colors.png",barimg)
    			#Update Status with color info
-   			api.update_status(str(filename) + " " + str(colors))
+   			api.update_status(str(n) + " from imgur has " + str(NUM_CLUSTERS) + " main colors: " + str(colors))
 
 
  
