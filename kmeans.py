@@ -80,9 +80,17 @@ for i,im in enumerate(images):
 	#im.download("./","image"+str(i))
 
 for n in names:
-	for filename in glob.glob('*'):
+	for filename in glob.glob("*"):
    		if str(n) in str(filename):
-   			print "yes"
+   			img = cv2.imread(filename)
+   			img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+   			img = img.reshape((img.shape[0]*img.shape[1],3))
+   			clusters = KMeans(n_clusters = NUM_CLUSTERS)
+   			clusters.fit(img)
+   			hist = centroid_histogram(clusters)
+   			colors = get_colors(hist,clusters.cluster_centers_)
+
+
  
 # load the image and convert it from BGR to RGB so that
 # we can dispaly it with matplotlib
