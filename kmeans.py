@@ -54,8 +54,8 @@ def get_colors(hist, centroids):
 
 #Keys
 NUM_CLUSTERS = 5
-CHOOSE = 3 #How many items to grab
-SUBREDDITS = ["Creatures_of_earth","Pics","earthporn","EyeCandy","watchmen","GraphicDesign"]
+CHOOSE = 1 #How many items to grab
+SUBREDDITS = ["imaginarylandscapes","Art","Creatures_of_earth","Pics","earthporn","EyeCandy","watchmen","LandscapePhotography","GraphicDesign","cinemagraphs","aww"]
 MESSAGES_ONE = ["I like this picture, " ,\
 				"I love this image, ",\
 				"This pic is beautiful, ",\
@@ -67,7 +67,7 @@ MESSAGES_TWO = ["The details are ",\
 				"Refreshing and "]
 MESSAGES_TWO_ADJ = ["Adroit","Adamant","Arcadian","Baleful","Comely","Contumacious", "Didactic",\
 					"Efficacious","Effulgent","Equanimous","Fastidious","Fecund","Hubristic",\
-					"Insidious","Irksome", "Jocular", "Limpid", "Mendacious", "Redolent", "Zealous"]
+					"Insidious","Irksome", "Jocular", "Beautiful", "Mendacious", "Redolent", "Zealous"]
 MESSAGES_THREE = [", let me tell you what my #favoritecolors in it are",\
 					", I'll post my #favoritecolors next",\
 					", do you want to know my #favoritecolors?"]
@@ -83,6 +83,8 @@ api = tweepy.API(auth)
 imgur = pyimgur.Imgur(IMGUR_CLIENT_ID)
 #images = imgur.get_gallery(section='hot', sort='viral', window='day', show_viral=True, limit=CHOOSE)
 #images = imgur.get_subreddit_gallery(SUBREDDITS[random.randrange(0,len(SUBREDDITS))], sort='time', window='top', limit=CHOOSE)
+
+api.update_status("#UmbalaBot is on")
 
 run = True
 while (run):
@@ -132,6 +134,8 @@ while (run):
 				os.remove(filename)
 		if str(".gif") in str(filename.lower()):
 				os.remove(filename)
+
+	time.sleep(300)#Every Five Minutes
 
 
 
