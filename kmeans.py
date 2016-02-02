@@ -53,12 +53,6 @@ def get_colors(hist, centroids):
 	return colors
 
 #Keys
-IMGUR_CLIENT_ID = '01daaea9535f153'
-IMGUR_CLIENT_SECRET = '7ee8195bc0a759716a3aefd0898312c0d24c3e95'
-T_CONSUMER_KEY = 'AOP8tSfCUVGnPvP5XhuQ0YM4a'#keep the quotes, replace this with your consumer key
-T_CONSUMER_SECRET = 'AnoqbRjZq66qaf3ko5QnbCVFswizY5TRYnBwVqfP3MoMqe5no2'#keep the quotes, replace this with your consumer secret key
-T_ACCESS_KEY = '4870995742-SbLewErytfpuulbm42NCYJUW92ldWarsLwgkZB0'#keep the quotes, replace this with your access token
-T_ACCESS_SECRET = 'QJmMsF5Qf4WjCqi4MNN7tIDhA8mPF555oTImQW19b6ivu'#keep the quotes, replace this with your access token secret
 NUM_CLUSTERS = 5
 CHOOSE = 3 #How many items to grab
 SUBREDDITS = ["Creatures_of_earth","Pics","earthporn","EyeCandy","watchmen","GraphicDesign"]
