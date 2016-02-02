@@ -91,7 +91,7 @@ for i,n in enumerate(names):
    			cv2.imwrite(outfilename,barimg)
    			#Update Status with color info
    			#api.update_status(str(n) + " from imgur has " + str(NUM_CLUSTERS) + " main colors: " + str(colors))
-   			message = str(n) + ":" + str(links[i]) + "
+   			message = str(n) + ":" + str(links[i])
    			print len(message)
    			print message
    			api.update_with_media(outfilename,message)
