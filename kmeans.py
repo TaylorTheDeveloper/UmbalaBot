@@ -120,7 +120,7 @@ while (run):
 	   					  MESSAGES_TWO_ADJ[random.randrange(0,len(MESSAGES_TWO_ADJ))] +\
 	   					  MESSAGES_THREE[random.randrange(0,len(MESSAGES_THREE))]
 	   			api.update_with_media(filename,message)
-	   			message = str(links[i]) + MESSAGES_FOUR[random.randrange(0,len(MESSAGES_FOUR))] + " #UmbalaBot"
+	   			message = str(links[i]) + " " + MESSAGES_FOUR[random.randrange(0,len(MESSAGES_FOUR))] + " #UmbalaBot"
 	   			api.update_with_media(outfilename,message)
 
 
