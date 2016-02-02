@@ -64,16 +64,18 @@ imgur = pyimgur.Imgur(IMGUR_CLIENT_ID)
 #print image.title # Cat Ying & Yang
 #print image.link# http://imgur.com/S1jmapR.jpg
 #image.download()
-#images = imgur.get_gallery(section='hot', sort='viral', window='day', show_viral=True, limit=1)
-images = imgur.get_subreddit_gallery('Pics', sort='time', window='top', limit=1)
+images = imgur.get_gallery(section='hot', sort='viral', window='day', show_viral=True, limit=1)
+#images = imgur.get_subreddit_gallery('Pics', sort='time', window='top', limit=1)
 
 names = list()
+links = list()
 for i,im in enumerate(images):
 	name = im.title#"image" + str(i)
 	names.append(name)
-	im.download("./",name)
+	links.append(im.link)
+	#im.download("./",name)
 
-for n in names:
+for i,n in enumerate(names):
 	for filename in glob.glob("*"):
    		if str(n) in str(filename):
    			img = cv2.imread(filename)
@@ -85,9 +87,14 @@ for n in names:
    			hist = centroid_histogram(clusters)
    			colors = get_colors(hist,clusters.cluster_centers_)
    			barimg = plot_colors(hist,clusters.cluster_centers_)
-   			cv2.imwrite("colors.png",barimg)
+   			outfilename = "colors.png"
+   			cv2.imwrite(outfilename,barimg)
    			#Update Status with color info
-   			api.update_status(str(n) + " from imgur has " + str(NUM_CLUSTERS) + " main colors: " + str(colors))
+   			#api.update_status(str(n) + " from imgur has " + str(NUM_CLUSTERS) + " main colors: " + str(colors))
+   			message = str(n) + ":" + str(links[i]) + "
+   			print len(message)
+   			print message
+   			api.update_with_media(outfilename,message)
 
 
  
