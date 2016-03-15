@@ -125,12 +125,12 @@ def loadColorMemory(dirname,outdirname):
 
 
 #Keys
-IMGUR_CLIENT_ID = '01daaea9535f153'
-IMGUR_CLIENT_SECRET = '7ee8195bc0a759716a3aefd0898312c0d24c3e95'
-T_CONSUMER_KEY = 'AOP8tSfCUVGnPvP5XhuQ0YM4a'#keep the quotes, replace this with your consumer key
-T_CONSUMER_SECRET = 'AnoqbRjZq66qaf3ko5QnbCVFswizY5TRYnBwVqfP3MoMqe5no2'#keep the quotes, replace this with your consumer secret key
-T_ACCESS_KEY = '4870995742-SbLewErytfpuulbm42NCYJUW92ldWarsLwgkZB0'#keep the quotes, replace this with your access token
-T_ACCESS_SECRET = 'QJmMsF5Qf4WjCqi4MNN7tIDhA8mPF555oTImQW19b6ivu'#keep the quotes, replace this with your access token secret
+IMGUR_CLIENT_ID = ''
+IMGUR_CLIENT_SECRET = ''
+T_CONSUMER_KEY = ''#keep the quotes, replace this with your consumer key
+T_CONSUMER_SECRET = ''#keep the quotes, replace this with your consumer secret key
+T_ACCESS_KEY = ''#keep the quotes, replace this with your access token
+T_ACCESS_SECRET = ''#keep the quotes, replace this with your access token secret
 NUM_CLUSTERS = 5
 CHOOSE = 1 #How many items to grab
 SUBREDDITS = ["imaginarylandscapes","Art","Creatures_of_earth","Pics","earthporn","EyeCandy","watchmen","LandscapePhotography","GraphicDesign","cinemagraphs","aww"]
@@ -162,16 +162,18 @@ imgur = pyimgur.Imgur(IMGUR_CLIENT_ID)
 #images = imgur.get_gallery(section='hot', sort='viral', window='day', show_viral=True, limit=CHOOSE)
 #images = imgur.get_subreddit_gallery(SUBREDDITS[random.randrange(0,len(SUBREDDITS))], sort='time', window='top', limit=CHOOSE)
 
-load_corpus_images("corpus","loadedCorpusData")
+# load_corpus_images("corpus","loadedCorpusData")
 
-exit()
+# exit()
 
 
 run = True
 while (run):
+
 	images = imgur.get_subreddit_gallery(SUBREDDITS[random.randrange(0,len(SUBREDDITS))], sort='time', window='top', limit=CHOOSE)
 	names = list()
 	links = list()
+
 	for i,im in enumerate(images):
 		name = "image" + str(i)
 		names.append(name)
